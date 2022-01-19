@@ -5,7 +5,7 @@ import Head from 'next/head';
 import React from 'react';
 import { Photo } from '../types';
 
-const Home: NextPage<{ photos:Photo[]}> = ({ photos }) => {
+const Home: NextPage<{ photos: Photo[] }> = ({ photos }) => {
   return (
     <div>
       <Head>
@@ -14,29 +14,38 @@ const Home: NextPage<{ photos:Photo[]}> = ({ photos }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="text-black text-lg">NFT</h1>
+      <div className='flex relative'>
+        <div>
+          <h1 className="text-black text-lg">IGNEUS</h1>
+          <h1 className="text-black text-lg">/IVANPEDRETTI.ETH</h1>
 
+          <p>
+            Explore the patterns and colors brought to you from the center of
+            the Earth through the force of volcanic eruptions.
+          </p>
+        </div>
 
-      <Slider photos={photos}/>
-
-
+        <button className="bg-black rounded-lg text-white py-2 px-4 right-0 top-0 absolute">
+          Explore
+        </button>
+      </div>
+      <Slider photos={photos} />
     </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-
   const res = await axios.get(
     'https://api.pexels.com/v1/search?query=forest&per_page=8',
   );
 
   const results = res.data.photos;
 
-  return{
+  return {
     props: {
-      photos: results
-    }
-  }
-}
+      photos: results,
+    },
+  };
+};
 
-export default Home
+export default Home;
