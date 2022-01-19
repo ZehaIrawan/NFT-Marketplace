@@ -1,9 +1,8 @@
+import Slider from '@components/Slider';
 import axios from 'axios';
 import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-import imageLoader from '../imageLoader';
+import React from 'react';
 import { Photo } from '../types';
 
 const Home: NextPage<{ photos:Photo[]}> = ({ photos }) => {
@@ -15,23 +14,12 @@ const Home: NextPage<{ photos:Photo[]}> = ({ photos }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="text-blue-500">NFT</h1>
-      {photos.map((photo) => {
-        return (
-          <div key={photo.id}>
-            <p>{photo.photographer}</p>
+      <h1 className="text-black text-lg">NFT</h1>
 
-            <Image
-              loader={imageLoader}
-              unoptimized
-              src={photo.src.original}
-              alt={photo.alt}
-              width="200"
-              height="200"
-            />
-          </div>
-        );
-      })}
+
+      <Slider photos={photos}/>
+
+
     </div>
   );
 };
@@ -39,7 +27,7 @@ const Home: NextPage<{ photos:Photo[]}> = ({ photos }) => {
 export const getStaticProps: GetStaticProps = async (context) => {
 
   const res = await axios.get(
-    'https://api.pexels.com/v1/search?query=nature&per_page=3',
+    'https://api.pexels.com/v1/search?query=forest&per_page=8',
   );
 
   const results = res.data.photos;
