@@ -20,7 +20,7 @@ const TextScroller = ({ text }: TextScrollerProps) => {
   });
 
   return (
-    <div key={key}>
+    <div key={key} className='overflow-x-hidden'>
       <animated.div style={scrolling}>{text}</animated.div>
     </div>
   );
