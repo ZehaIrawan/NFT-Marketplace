@@ -1,4 +1,5 @@
-import React from 'react'
+import Link from 'next/link';
+import React from 'react';
 
 const HomeCollection = () => {
   return (
@@ -13,9 +14,11 @@ const HomeCollection = () => {
         </p>
       </div>
 
+      <Link href='/zeha/ignus' passHref>
       <button className="bg-black rounded-lg text-white py-2 px-4 right-0 top-0 absolute">
         Explore
       </button>
+      </Link>
     </div>
   );
 }

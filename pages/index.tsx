@@ -5,6 +5,7 @@ import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import { Photo } from '../types';
+import Hero from '@components/Hero'
 
 const Home: NextPage<{ photos: Photo[] }> = ({ photos }) => {
   return (
@@ -15,13 +16,18 @@ const Home: NextPage<{ photos: Photo[] }> = ({ photos }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="mx-6">
+
+
+      <main>
+        <Hero/>
+        <div className="mx-6">
         {photos.map((photo, index) => (
           <div key={index} className="my-12">
             <HomeCollection />
             <Slider photos={photo} />
           </div>
         ))}
+        </div>
       </main>
     </div>
   );
@@ -44,8 +50,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   results.push(forestQuery.data.photos);
   results.push(volcanoQuery.data.photos);
   results.push(wavesQuery.data.photos);
-
-  console.log(results[0]);
 
   return {
     props: {
