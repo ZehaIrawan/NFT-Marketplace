@@ -6,6 +6,7 @@ import Head from 'next/head';
 import React from 'react';
 import { Photo } from '../types';
 import Hero from '@components/Hero'
+import TextScroller from '@src/components/TextScroller';
 
 const Home: NextPage<{ photos: Photo[] }> = ({ photos }) => {
   return (
@@ -19,6 +20,7 @@ const Home: NextPage<{ photos: Photo[] }> = ({ photos }) => {
 
 
       <main>
+        <TextScroller text='Long live the king!'/>
         <Hero/>
         <div className="mx-6">
         {photos.map((photo, index) => (
