@@ -1,3 +1,4 @@
+import HomeCollection from '@components/HomeCollection';
 import Slider from '@components/Slider';
 import axios from 'axios';
 import type { GetStaticProps, NextPage } from 'next';
@@ -14,32 +15,37 @@ const Home: NextPage<{ photos: Photo[] }> = ({ photos }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className='flex relative'>
-        <div>
-          <h1 className="text-black text-lg">IGNEUS</h1>
-          <h1 className="text-black text-lg">/IVANPEDRETTI.ETH</h1>
-
-          <p>
-            Explore the patterns and colors brought to you from the center of
-            the Earth through the force of volcanic eruptions.
-          </p>
-        </div>
-
-        <button className="bg-black rounded-lg text-white py-2 px-4 right-0 top-0 absolute">
-          Explore
-        </button>
-      </div>
-      <Slider photos={photos} />
+      <main className="mx-6">
+        {photos.map((photo, index) => (
+          <div key={index} className="my-12">
+            <HomeCollection />
+            <Slider photos={photo} />
+          </div>
+        ))}
+      </main>
     </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await axios.get(
+  const forestQuery = await axios.get(
     'https://api.pexels.com/v1/search?query=forest&per_page=8',
   );
 
-  const results = res.data.photos;
+  const volcanoQuery = await axios.get(
+    'https://api.pexels.com/v1/search?query=volcano&per_page=8',
+  );
+
+  const wavesQuery = await axios.get(
+    'https://api.pexels.com/v1/search?query=waves&per_page=8',
+  );
+
+  const results = [];
+  results.push(forestQuery.data.photos);
+  results.push(volcanoQuery.data.photos);
+  results.push(wavesQuery.data.photos);
+
+  console.log(results[0]);
 
   return {
     props: {

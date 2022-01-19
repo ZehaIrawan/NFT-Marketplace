@@ -11,21 +11,6 @@ SwiperCore.use([Navigation, Pagination, Controller, Thumbs]);
 function Slider({ photos}) {
   const [controlledSwiper, setControlledSwiper] = useState(null);
 
-  // const slides = [];
-  // for (let i = 0; i < 5; i += 1) {
-  //   slides.push(
-  //     <SwiperSlide key={`slide-${i}`} tag="li">
-  //       <Image
-  //         loader={imageLoader}
-  //         unoptimized
-  //         src={`https://picsum.photos/id/${i + 1}/500/300`}
-  //         alt={`Slide ${i}`}
-  //         width="500"
-  //         height="400"
-  //       />
-  //     </SwiperSlide>,
-  //   );
-  // }
 
   return (
     <React.Fragment>
